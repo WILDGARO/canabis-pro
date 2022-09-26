@@ -26,6 +26,7 @@ class Home_page extends StatelessWidget {
                           Navigator.push(
                               context, MaterialPageRoute(builder: (context) => Home()));
                         },
+                        shape: StadiumBorder(),
                         child: Text(
                           "เริ่มใช้งาน",
                           style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
@@ -46,6 +47,7 @@ class Home_page extends StatelessWidget {
                           Navigator.push(
                               context, MaterialPageRoute(builder: (context) => CreditScreen()));
                         },
+                        shape: StadiumBorder(),
                         child: Text(
                           "รายชื่อผู้จัดทำ",
                           style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
