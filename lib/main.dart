@@ -109,99 +109,105 @@ class _HomeState extends State<Home> {
           'NITROGEN',
         ),
       ),
-      body: Container(
-        height: h,
-        width: w,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              loading == true
-                  ? Container()
-                  : Container(
-                      //color: Color.fromARGB(255, 134, 237, 141),
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 380,
-                            padding: EdgeInsets.all(15),
-                            child: Image.file(file!),
-                          ),
-                          Text(
-                            (output![0]['label']).toString().substring(1),
-                          ),
-                          Text(
-                            'Confidence: ' +
-                                (output![0]['confidence']).toStringAsFixed(4),
-                          ),
-                        ],
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(0,250,0,0),
+        child: Container(
+          height: h,
+          width: w,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                loading == true
+                    ? Container()
+                    : Container(
+                        //color: Color.fromARGB(255, 134, 237, 141),
+                        child: Column(
+                          children: [
+                            Container(
+                              height: 380,
+                              padding: EdgeInsets.all(15),
+                              child: Image.file(file!),
+                            ),
+                            Text(
+                              (output![0]['label']).toString().substring(1),
+                            ),
+                            Text(
+                              'Confidence: ' +
+                                  (output![0]['confidence']).toStringAsFixed(4),
+                            ),
+                          ],
+                        ),
+                      ),
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  child: ClipRect(
+                    child: FlatButton(
+                      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+                      color: Colors.pink,
+                      onPressed: getImageFromGallery,
+                      shape: StadiumBorder(),
+                      child: Text(
+                        "เอาในเครื่อง",
+                        style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                       ),
                     ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                child: ClipRect(
-                  child: FlatButton(
-                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
-                    color: Colors.pink,
-                    onPressed: getImageFromGallery,
-                    child: Text(
-                      "เอาในเครื่อง",
-                      style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  child: ClipRect(
+                    child: FlatButton(
+                      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+                      color: Colors.pink,
+                      onPressed: getImageFromCamera,
+                      shape: StadiumBorder(),
+                      child: Text(
+                        "กล้องถ่ายรูป",
+                        style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                child: ClipRect(
-                  child: FlatButton(
-                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
-                    color: Colors.pink,
-                    onPressed: getImageFromCamera,
-                    child: Text(
-                      "กล้องถ่ายรูป",
-                      style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  child: ClipRect(
+                    child: FlatButton(
+                      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+                      color: Colors.pink,
+                      onPressed: () async {
+                        if (fine == "Class 1") {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Class1(fine: fine)));
+                        } else if (fine == "Class 2") {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Class2()));
+                        } else if (fine == "Class 3") {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Class3()));
+                        } else {
+                          uploadimageData();
+                          return;
+                        }
+                      },
+                      shape: StadiumBorder(),
+                      child: Text(
+                        "เเก้ไข",
+                        style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                child: ClipRect(
-                  child: FlatButton(
-                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
-                    color: Colors.pink,
-                    onPressed: () async {
-                      if (fine == "Class 1") {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Class1(fine: fine)));
-                      } else if (fine == "Class 2") {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Class2()));
-                      } else if (fine == "Class 3") {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Class3()));
-                      } else {
-                        uploadimageData();
-                        return;
-                      }
-                    },
-                    child: Text(
-                      "เเก้ไข",
-                      style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-                    ),
-                  ),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
